@@ -60,6 +60,7 @@ class App extends React.Component {
     //     casey.push(this.state.posts[i]);
     //   }
     // }
+    //Option!
     const casey = this.state.posts.filter(checkPost => checkPost.title !== sentPost.title);
 
     switch(operator) {
@@ -73,8 +74,19 @@ class App extends React.Component {
         console.error("Something terrible occured in vote function")
     }
 
+    casey.push(sentPost);
+    casey.sort((a, b) => b.voteCount - a.voteCount);
+
+    //Option 2
+    // const newArr = this.state.posts;
+    // const casey2 = newArr.map(
+    //     checkPost =>
+    //       if (checkPost.title === sentPost.title)
+    //         checkPost.voteCount++
+    // )
+
     this.setState({
-      posts: [...casey, sentPost]
+      posts: casey
     })
   }
 
@@ -92,8 +104,14 @@ class App extends React.Component {
             <h4>{post.title}</h4>
             <p>{post.content}</p>
             <p>{post.voteCount}</p>
-            <button onClick={(e) => this.vote(e, post, "plus")}>Vote up!</button>
-            <button onClick={(e) => this.vote(e, post, "minus")}>Vote down!</button>
+            <i
+              className="fa fa-angle-double-up"
+              onClick={(e) => this.vote(e, post, "plus")}
+            ></i>
+            <i
+              className="fa fa-angle-double-down"
+              onClick={(e) => this.vote(e, post, "minus")}
+            ></i>
           </div>
         )}
       </div>
@@ -108,15 +126,3 @@ export default App;
 //   let post = this.state.posts[i];
 //   <button onClick={(e) => this.upVote(post)}
 // }
-
-
-// <i
-//   class="fa fa-arrow-up"
-//   aria-hidden="true"
-//   onClick={(e) => this.upVote(e, post)}
-// ></i>
-// <i
-//   class="fa fa-arrow-down"
-//   aria-hidden="true"
-//   onClick={(e) => this.downVote(e, post)}
-// ></i>
