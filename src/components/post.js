@@ -46,7 +46,7 @@ class Post extends Component {
     this.setState({
       posts,
       content: "",
-      title: "",
+      title: ""
     })
   }
 
